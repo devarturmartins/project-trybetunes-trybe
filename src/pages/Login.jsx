@@ -21,12 +21,13 @@ class Login extends Component {
   };
 
   onInputChange = (event) => {
-    const validation = event.target.value.length > 2;
-    validation &&
-    (this.setState({
-      buttonDisabled: false,
-      nameInput: event.target.value,
-    }));
+    const validation = event.target.value.length;
+    if (validation > 2) {
+      this.setState({
+        buttonDisabled: false,
+        nameInput: event.target.value,
+      });
+    }
   };
 
   render() {
