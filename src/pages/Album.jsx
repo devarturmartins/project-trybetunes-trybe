@@ -9,7 +9,7 @@ import Loading from './Loading';
 export default class Album extends Component {
   state = {
     idAlbum: [],
-    listFavorites: [],
+    // listFavorites: [],
     favorito: false,
     checked: {},
   };
@@ -52,7 +52,7 @@ export default class Album extends Component {
     const { idAlbum } = this.state;
     const storage = await getFavoriteSongs();
     const musicFavor = storage.filter((e) => e.artistId === idAlbum[0].artistId);
-    this.setState(() => ({ listFavorites: musicFavor }));
+    // this.setState({ listFavorites: musicFavor });
     if (musicFavor.length > 0) {
       this.setState({ favorito: true }, () => {
         musicFavor.forEach((e) => {
