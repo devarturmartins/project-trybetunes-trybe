@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 export default class MusicCard extends Component {
   render() {
-    const { previewUrl, trackName, trackId, favorites } = this.props;
+    const { previewUrl, trackName, trackId, favorites, checked } = this.props;
     return (
       <div>
         <div>
@@ -17,13 +17,15 @@ export default class MusicCard extends Component {
           </audio>
           <label
             htmlFor={ trackId }
-            data-testid={ `checkbox-music-${trackId}` }
           >
             Favorita
             <input
-              onClick={ favorites }
+              name={ trackName }
+              data-testid={ `checkbox-music-${trackId}` }
+              onChange={ favorites }
               id={ trackId }
               type="checkbox"
+              checked={ checked }
             />
           </label>
         </div>
@@ -37,4 +39,5 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
   favorites: PropTypes.func.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
