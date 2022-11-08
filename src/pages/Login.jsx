@@ -11,27 +11,34 @@ class Login extends Component {
   };
 
   clickButton = async () => {
-    const { nameInput } = this.state;
+    const { nameInput, descriptionInput, emailInput, imageInput } = this.state;
     const { history } = this.props;
     this.setState({
       logado: true,
     });
-    await createUser({ name: nameInput });
+    await createUser({ name: nameInput,
+      description: descriptionInput,
+      email: emailInput,
+      image: imageInput });
     history.push('/search');
   };
 
   onInputChange = (event) => {
     const validation = event.target.value.length;
+    console.log(event.target.value);
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
     if (validation > 2) {
       this.setState({
         buttonDisabled: false,
-        nameInput: event.target.value,
       });
     }
   };
 
   render() {
-    const { logado, buttonDisabled } = this.state;
+    const { logado,
+      buttonDisabled, nameInput, emailInput, descriptionInput, imageInput } = this.state;
     return (
       <div data-testid="page-login">
         {
@@ -41,6 +48,28 @@ class Login extends Component {
                 data-testid="login-name-input"
                 placeholder="Digite seu nome"
                 onChange={ this.onInputChange }
+                name="nameInput"
+                value={ nameInput }
+              />
+              <input
+                data-testid="login-email-input"
+                placeholder="Digite seu email"
+                onChange={ this.onInputChange }
+                name="emailInput"
+                value={ emailInput }
+              />
+              <textarea
+                data-testid="login-description-input"
+                placeholder="Descricao"
+                onChange={ this.onInputChange }
+                name="descriptionInput"
+                value={ descriptionInput }
+              />
+              <input
+                data-testid="login-image-input"
+                onChange={ this.onInputChange }
+                name="imageInput"
+                value={ imageInput }
               />
               <button
                 disabled={ buttonDisabled }

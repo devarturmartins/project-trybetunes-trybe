@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 
 export default class MusicCard extends Component {
   render() {
-    const { previewUrl, trackName, trackId, favorites, checked } = this.props;
+    const { previewUrl,
+      trackName, trackId, favorites, checked } = this.props;
     return (
       <div>
         <div>
@@ -20,6 +21,7 @@ export default class MusicCard extends Component {
           >
             Favorita
             <input
+              key={ trackName }
               name={ trackName }
               data-testid={ `checkbox-music-${trackId}` }
               onChange={ favorites }
@@ -40,4 +42,5 @@ MusicCard.propTypes = {
   trackId: PropTypes.number.isRequired,
   favorites: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
+  // removeMusicFavorites: PropTypes.func.isRequired,
 };
