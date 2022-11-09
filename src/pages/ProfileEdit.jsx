@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Header from '../Header';
@@ -60,7 +61,9 @@ export default class ProfileEdit extends Component {
       description: inputDescription,
       image: inputImage,
     });
-    this.setState({ loading: false, profile: true });
+    const { history } = this.props;
+    history.push('/profile');
+    // this.setState({ profile: true });
   };
 
   render() {
@@ -109,7 +112,7 @@ export default class ProfileEdit extends Component {
                   data-testid="edit-button-save"
                   onClick={ this.saveEditProfile }
                 >
-                  Salvar
+                  Editar perfil
                 </button>
               </form>
             )
@@ -121,3 +124,9 @@ export default class ProfileEdit extends Component {
     );
   }
 }
+
+ProfileEdit.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
