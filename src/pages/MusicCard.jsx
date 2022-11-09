@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 export default class MusicCard extends Component {
   render() {
     const { previewUrl,
-      trackName, trackId, favorites, checked } = this.props;
+      trackName, trackId, favorites, checked, handleChanges } = this.props;
     return (
       <div>
         <div>
@@ -25,6 +25,7 @@ export default class MusicCard extends Component {
               name={ trackName }
               data-testid={ `checkbox-music-${trackId}` }
               onChange={ favorites }
+              onClick={ handleChanges }
               id={ trackId }
               type="checkbox"
               checked={ checked }
@@ -42,5 +43,5 @@ MusicCard.propTypes = {
   trackId: PropTypes.number.isRequired,
   favorites: PropTypes.func.isRequired,
   checked: PropTypes.bool.isRequired,
-  // removeMusicFavorites: PropTypes.func.isRequired,
+  handleChanges: PropTypes.func.isRequired,
 };
